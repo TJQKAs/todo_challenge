@@ -1,25 +1,33 @@
 <!doctype html>
-<html lang="en" ng-app="ToDoList">
+
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <title>Github user search</title>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
-    <script src="js/todoListController.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="js/app.js"></script>
   </head>
 
 
- <body ng-controller="ToDoListController as todoCtrl">
-   <div>
-     <form class="form-horizontal" id="addTask" ng-submit="todoCtrl.addTask()">
-       <input id='newTask' type="text" ng-model="todoCtrl.newTask" placeholder="Current task">
-      <button class="btn btn-default" id="addTask" ng-click="todoCtrl.addTask()">Add Task</button>
+  <body ng-app="controllerAsExample">
+    <div id="ctrl-as-exmpl" ng-controller="SettingsController1 as settings">
 
-     </form>
-
-
+    Todo list:
+    <ul>
+      <li ng-repeat="task in settings.tasks">
+        <select ng-model="task.type" aria-label="Task method" id="select_{{$index}}">
+           <option>high importance</option>
+           <option>low importance</option>
+        </select>
+        <input type="text" ng-model="task.value" aria-labelledby="select_{{$index}}" />
+        <button ng-click="settings.clearTask(task)">clear</button>
+        <button ng-click="settings.removeTask(task)" aria-label="Remove">X</button>
+      </li>
+      <li><button ng-click="settings.addTask()">add</button></li>
+   </ul>
+  </div>
   </body>
-</html>
+  </html>
